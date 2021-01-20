@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       
+    <mvc:interceptors>
+        <bean class = "com.neu.interceptor.PageInterceptor" />
+    </mvc:interceptors>
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+	
+	
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="LoginPage.htm">indexController</prop>
+                <prop key="AdminTasks.htm">adminTasksController</prop>
+                <prop key="ErrorPageInterceptor.htm">InterceptorErrorController</prop>
+            </props>
+        </property>
+    </bean>
+
+<!--   Original
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />-->
+    
+    <bean id="viewResolver"
+      	class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix">
+           <value>/WEB-INF/jsp/</value>
+         </property>
+        <property name="suffix">
+           <value>.jsp</value>
+        </property>
+        <property name="order" value="1" />
+    </bean>
+    
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+	   <property name="location">
+	       <value>/WEB-INF/spring-pdf-views.xml</value>
+	   </property>
+	   <property name="order" value="0" />
+    </bean>
+         
+    <!--
+    The index controller.
+    -->
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="LoginPage" />
+   
+    <bean name="adminTasksController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="AdminTasks" />
+    
+    <!--
+    The Interceptor Error controller.
+    -->
+    <bean name="InterceptorErrorController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="ErrorPageInterceptor" />
+    
+          
+    <bean class="com.neu.controller.RedirectController"/>
+    <bean class="com.neu.controller.CreateAccountController"/>
+    <bean class="com.neu.controller.MakeAPostController"/>
+    <bean class="com.neu.controller.SinglePostController"/>
+    <bean class="com.neu.controller.getuseremailidController"/>
+    <bean class="com.neu.controller.PostViewController"/>
+    <bean class="com.neu.controller.PDFController"/>
+    <bean class="com.neu.controller.CaptchVerifyController"/>
+    <bean class="com.neu.controller.CaptchaController"/>
+</beans>

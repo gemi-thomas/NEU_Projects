@@ -1,0 +1,63 @@
+name: Build and Deploy WebApp
+
+env:
+  ARTIFACT_NAME: csye6225-webapp-${{github.run_number}}.zip
+  AWS_REGION: us-east-1
+  AWS_CODE_DEPLOY_APP: csye6225-webapp
+  AWS_CODE_DEPLOY_GROUP: csye6225-webapp-deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  ghactions:
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Deployment Artifact
+      run: |
+          pwd
+          cd ..
+          pwd
+          ls -al
+          mkdir codedeploy_artifact
+          zip -r ${{env.ARTIFACT_NAME}} webapp -x "webapp/.gitignore/*" "webapp/.git/*"
+          pwd
+          ls -al
+          mv ${{env.ARTIFACT_NAME}} codedeploy_artifact/
+          cd webapp
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+        aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+        aws-region: ${{env.AWS_REGION}}
+
+    - name: Copy Artifact to S3
+      run: |
+        pwd
+        ls -al
+        cd ..
+        pwd
+        ls -al
+        aws s3 sync ./codedeploy_artifact s3://${{secrets.S3_CODEDEPLOY_BUCKET}}
+
+    - name: Call AWS Code Deploy
+      run: |
+        output=$(aws deploy create-deployment \
+        --application-name ${{env.AWS_CODE_DEPLOY_APP}} \
+        --deployment-group-name ${{env.AWS_CODE_DEPLOY_GROUP}} \
+        --s3-location bucket=${{secrets.S3_CODEDEPLOY_BUCKET}},key=${{env.ARTIFACT_NAME}},bundleType=zip \
+        --region=${{env.AWS_REGION}} \
+        --ignore-application-stop-failures \
+        --output json)
+
+        echo $output
+        dId=$(echo $output | jq -r '.deploymentId')
+
+        aws deploy wait deployment-successful --deployment-id $dId
+

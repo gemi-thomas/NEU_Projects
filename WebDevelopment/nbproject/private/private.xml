@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/web/WEB-INF/jsp/SingleFurnitureView.jsp</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/me/data/DAO.java</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/web/WEB-INF/jsp/SingleBookView.jsp</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/hibernate.cfg.xml</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/neu/interceptor/PageInterceptor.java</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/web/WEB-INF/jsp/HomePage.jsp</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/neu/controller/CreateAccountController.java</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/neu/controller/SinglePostController.java</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/web/WEB-INF/jsp/ErrorPageInterceptor.jsp</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/neu/controller/getuseremailidController.java</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/web/WEB-INF/jsp/SearchBookView.jsp</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/me/data/UserDAO.java</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/web/WEB-INF/jsp/SingleHomeRentalsView.jsp</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/neu/controller/RedirectController.java</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/web/WEB-INF/jsp/SingleElectronicsView.jsp</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/web/WEB-INF/jsp/ErrorPage.jsp</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/neu/pojo/User.java</file>
+            <file>file:/C:/NEU/AcademicProjects/Fall2019/NetBeansProjects_WebDev/FinalProj/src/java/com/neu/controller/PostViewController.java</file>
+        </group>
+    </open-files>
+</project-private>

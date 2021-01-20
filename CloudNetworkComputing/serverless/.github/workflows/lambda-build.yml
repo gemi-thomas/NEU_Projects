@@ -1,0 +1,37 @@
+name: Lambda Deploy 
+
+env:
+  AWS_REGION: us-east-1
+  
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  ghactions:
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lambda Deployment 
+      run: |
+          pwd
+          ls -al
+          cd app/
+          zip index.zip index.js
+          cd ..
+          
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+        aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+        aws-region: ${{env.AWS_REGION}}
+
+    - name: Copy Artifact to Lambda Function
+      run: |
+        cd app/
+        aws lambda update-function-code --function-name csye6225LambdaFn --zip-file fileb://index.zip
+
+

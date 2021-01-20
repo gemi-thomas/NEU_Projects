@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>   
+    
+   
+   <display-name>Login Using "j_security_check"</display-name>
+  <!--Defines Security Constraint -->
+    <security-constraint>
+        <display-name>JSP Declarative Security</display-name>
+        <web-resource-collection>
+            <web-resource-name>cp</web-resource-name>
+            <description/>
+            <url-pattern>/AdminTasks.htm</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+<!--Defines Login Config -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/WEB-INF/jsp/login.jsp</form-login-page>
+            <form-error-page>/WEB-INF/jsp/error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+<!--Defines Security Role -->
+    <security-role>
+        <description/>
+        <role-name>admin</role-name>
+    </security-role>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>redirect.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.neu.pojo.Electronics" table="electronics" >
+      <id name="postID" column="postID" >
+          <generator class="identity" />
+      </id>
+      
+      <property name="title" column="title" type="string" />
+      <property name="city" column="city" type="string" />
+      <property name="postalcode" column="postalcode" type="string" />
+      <property name="highlight" column="highlight" type="string" />      
+      <property name="description" column="description" type="string" />  
+      <property name="date" column="date" type="string" /> 
+      <property name="brand" column="brand" type="string" />
+      
+      <set name="uploadImage" table="ElectronicsImageTable" cascade="all" lazy="false">
+          <key column="postID"  />          
+          <element type="string" column="imagePath" />
+      </set>
+    <!--  
+      <map name="emails" table="emails">
+          <key column="userId" />
+          <index column="email_id" type="string" />
+          <element type="string" column="email" />
+      </map>
+            -->
+  </class>
+</hibernate-mapping>

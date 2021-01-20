@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.neu.pojo.User" table="useraccount" >
+      <id name="userID" column="userID" >
+          <generator class="increment" />
+      </id>
+      <property name="email" column="email" type="string" />
+      <property name="location" column="location" type="string" />
+      <property name="password" column="password" type="string" />
+      <property name="phoneNum" column="phoneNum" type="string" />      
+      <property name="username" column="username" type="string" />  
+      
+
+      <set name="books" table="books" cascade="all,delete-orphan" lazy="false">
+        <key column="userID" />
+        <one-to-many class="com.neu.pojo.Books" />
+      </set>
+      
+
+     <set name="furniture" table="furniture" cascade="all,delete-orphan" lazy="false">
+        <key column="userID" />
+        <one-to-many class="com.neu.pojo.Furniture" />
+     </set>
+      
+
+     <set name="electronics" table="electronics" cascade="all,delete-orphan" lazy="false">
+        <key column="userID" />
+        <one-to-many class="com.neu.pojo.Electronics" />
+     </set> 
+     
+
+     <set name="homerentals" table="homerentals" cascade="all,delete-orphan" lazy="false">
+        <key column="userID" />
+        <one-to-many class="com.neu.pojo.HomeRentals" />
+     </set> 
+    <!--  
+      <map name="emails" table="emails">
+          <key column="userId" />
+          <index column="email_id" type="string" />
+          <element type="string" column="email" />
+      </map>
+            -->
+  </class>
+</hibernate-mapping>

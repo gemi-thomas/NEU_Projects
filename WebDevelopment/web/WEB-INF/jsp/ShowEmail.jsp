@@ -1,0 +1,1 @@
+<a href="mailto:${requestScope.data}">${requestScope.data}</a>

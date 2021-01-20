@@ -1,0 +1,9 @@
+bikeRideData_2017Data = LOAD '/home/gemi/Desktop/Hadoop/FinalProject/Dataset/{2017-Q1-Trips-History-Data.csv,2017-Q2-Trips-History-Data.csv,2017-Q3-Trips-History-Data.csv,2017-Q4-Trips-History-Data.csv}' USING PigStorage(',') as (duration:int, time1:chararray, time2:chararray, startstationNum:int, startStation:chararray, endstationNum:int, endStation:chararray, bikeNum:int, memberType:chararray);
+bikeRideData_2017 = FOREACH bikeRideData_2017Data GENERATE $4 as StartLocation;
+groupdata = GROUP bikeRideData_2017 by StartLocation;
+result1 = FOREACH groupdata GENERATE group, COUNT($1) AS count;
+orderdata = ORDER result1 by count DESC;
+STORE orderdata into '/home/gemi/Desktop/Hadoop/FinalProject/PigIntermediateOutput';
+finalResult = LOAD '/home/gemi/Desktop/Hadoop/FinalProject/PigIntermediateOutput/part*' USING PigStorage(',');
+top10= LIMIT finalResult 10;
+STORE top10 into '/home/gemi/Desktop/Hadoop/FinalProject/Top10PopularLocations';

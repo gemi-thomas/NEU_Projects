@@ -1,0 +1,7 @@
+bikeRideData_MergedData = LOAD '/home/gemi/Desktop/Hadoop/FinalProject/Dataset/{2017-Q1-Trips-History-Data.csv,2017-Q2-Trips-History-Data.csv,2017-Q3-Trips-History-Data.csv,2017-Q4-Trips-History-Data.csv}' USING PigStorage(',') as (duration:int, time1:chararray, time2:chararray, startstationNum:int, startStation:chararray, endstationNum:int, endStation:chararray, bikeNum:int, memberType:chararray);
+filter_data = FILTER bikeRideData_MergedData BY duration/(60*1000) > 180;
+bikeRideData_greaterthan30 = FOREACH filter_data GENERATE $4 as StartLocation;
+groupdata = GROUP bikeRideData_greaterthan30 by StartLocation;
+final_result = FOREACH groupdata GENERATE group, COUNT($1) AS count;
+final_result_ordered = ORDER final_result by count DESC; 
+STORE final_result_ordered into '/home/gemi/Desktop/Hadoop/FinalProject/Part5-PopularStartLocation';

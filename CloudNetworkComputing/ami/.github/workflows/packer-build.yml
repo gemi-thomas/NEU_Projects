@@ -1,0 +1,20 @@
+name: Packer Build for AMI
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: curl -o packer.zip https://releases.hashicorp.com/packer/1.6.4/packer_1.6.4_linux_amd64.zip && unzip packer.zip
+    - run: echo "Validating Packer template"
+    - run: ./packer validate ami.json
+    - run: ./packer build ami.json
+      env:
+        ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+        SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
