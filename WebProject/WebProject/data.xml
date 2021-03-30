@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dataset>
+    <employees id_auto_increment="4">
+        <employee dateOfBirth="" dateOfEmployment="" firstName="Ferris" id="1" lastName="Bueller" middleInitial="" status="INACTIVE"/>
+        <employee dateOfBirth="" dateOfEmployment="" firstName="Freddy" id="2" lastName="Krueger" middleInitial="" status="ACTIVE"/>
+        <employee dateOfBirth="" dateOfEmployment="03/30/2021" firstName="Hello" id="3" lastName="World" middleInitial="Amazing" status="ACTIVE"/>
+    </employees>
+</dataset>
